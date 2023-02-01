@@ -1,5 +1,5 @@
-chrome.action.onClicked.addListener(async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+chrome.action.onClicked.addListener(async (tab) => {
+  // let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   await chrome.tabs.reload();
   await sleep(3000);

@@ -14,7 +14,16 @@
     },
     "default_title": "Click để lấy id bài viết"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Q",
+        "mac": "Command+Q"
+      }
+    }
+  },
   "icons": {
-    "16": "/images/binocular.png"
+    "16": "/images/binocular.png",
+    "48": "/images/binocular.png"
   }
 }
