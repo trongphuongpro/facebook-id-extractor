@@ -11,8 +11,13 @@ function get_uid() {
 }
 
 function get_user_id() {
-  let tag_1_list = ['"groupID":"', '"pageID":"', '"userID":"'];
-  let tag_2 = '",';
+  let tag_1_list = [
+    '"groupID":"',
+    '"pageID":"',
+    '"userID":"',
+    '"profile_owner":{"id":"',
+  ];
+  let tag_2 = '"';
 
   let body = document.body.innerHTML;
 

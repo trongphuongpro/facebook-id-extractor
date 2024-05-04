@@ -10,7 +10,7 @@ function get_uid() {
 
 function get_post_id() {
   let tag_1 = '"subscription_target_id":"';
-  let tag_2 = '",';
+  let tag_2 = '"';
 
   let body = document.body.innerHTML;
   let idx_1 = body.indexOf(tag_1);
