@@ -3,7 +3,14 @@
   "description": "Trích xuất ID của bài viết",
   "version": "2.0",
   "manifest_version": 3,
-  "permissions": ["storage", "activeTab", "tabs", "scripting", "notifications"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "scripting",
+    "notifications",
+    "commands"
+  ],
   "host_permissions": ["https://*.facebook.com/*"],
   "background": {
     "service_worker": "background.js"
@@ -15,11 +22,19 @@
     "default_title": "Click để lấy id bài viết"
   },
   "commands": {
-    "_execute_action": {
+    "get_short_url_with_owner": {
       "suggested_key": {
         "default": "Ctrl+Q",
         "mac": "Command+Q"
-      }
+      },
+      "description": "Get long URL"
+    },
+    "get_short_url_no_owner": {
+      "suggested_key": {
+        "default": "Ctrl+Z",
+        "mac": "Command+Z"
+      },
+      "description": "Get short URL"
     }
   },
   "icons": {
