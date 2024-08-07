@@ -1,11 +1,16 @@
 chrome.action.onClicked.addListener(async (tab) => {
+  if (!tab.url.includes("facebook.com")) {
+    return;
+  }
+
   await chrome.tabs.reload();
   await sleep(3000);
 
   if (
     ["/posts/", "/permalink.php", "story_fbid"].some((kw) =>
       tab.url.includes(kw)
-    )
+    ) &&
+    tab.url.includes("facebook.com")
   ) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
@@ -15,7 +20,8 @@ chrome.action.onClicked.addListener(async (tab) => {
   } else if (
     ["/videos", "/watch", "/reel", "/stories"].every(
       (kw) => !tab.url.includes(kw)
-    )
+    ) &&
+    tab.url.includes("facebook.com")
   ) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
@@ -211,6 +217,10 @@ chrome.action.onClicked.addListener(async (tab) => {
 chrome.commands.onCommand.addListener(async (command, tab) => {
   console.log(`Command "${command}" triggered`);
 
+  if (!tab.url.includes("facebook.com")) {
+    return;
+  }
+
   await chrome.tabs.reload();
   await sleep(3000);
 
@@ -228,7 +238,8 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
     } else if (
       ["/videos", "/watch", "/reel", "/stories"].every(
         (kw) => !tab.url.includes(kw)
-      )
+      ) &&
+      tab.url.includes("facebook.com")
     ) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
@@ -250,7 +261,8 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
     } else if (
       ["/videos", "/watch", "/reel", "/stories"].every(
         (kw) => !tab.url.includes(kw)
-      )
+      ) &&
+      tab.url.includes("facebook.com")
     ) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
