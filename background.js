@@ -105,6 +105,8 @@ chrome.action.onClicked.addListener(async (tab) => {
 
     if (target_id) {
       let result = craft_short_url(target_id);
+
+      navigator.clipboard.writeText(result);
       window.prompt("URL:", result);
     } else {
       window.alert("Hãy reload trang!");
@@ -207,6 +209,7 @@ chrome.action.onClicked.addListener(async (tab) => {
         result = craft_short_url(target_id);
       }
 
+      navigator.clipboard.writeText(result);
       window.prompt("URL:", result);
     } else {
       window.alert("Hãy reload trang!");
@@ -347,6 +350,8 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
 
     if (target_id) {
       let result = craft_short_url(target_id);
+
+      navigator.clipboard.writeText(result);
       window.prompt("URL:", result);
     } else {
       window.alert("Hãy reload trang!");
@@ -449,6 +454,7 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
         result = craft_short_url(target_id);
       }
 
+      navigator.clipboard.writeText(result);
       window.prompt("URL:", result);
     } else {
       window.alert("Hãy reload trang!");
