@@ -31,8 +31,7 @@
     },
     "get_short_url_no_owner": {
       "suggested_key": {
-        "default": "Ctrl+Z",
-        "mac": "Command+Z"
+        "default": "Alt+Q"
       },
       "description": "Get short URL"
     }
