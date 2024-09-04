@@ -29,192 +29,6 @@ chrome.action.onClicked.addListener(async (tab) => {
       args: ["profile"],
     });
   }
-
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  function get_short_fbid(type) {
-    function get_post_id() {
-      let tag_1 = '"subscription_target_id":"';
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-      let idx_1 = body.indexOf(tag_1);
-      let idx_2 = 0;
-
-      if (idx_1 != -1) {
-        idx_2 = body.indexOf(tag_2, idx_1 + tag_1.length);
-      } else {
-        return null;
-      }
-
-      let target_id = body.substring(idx_1 + tag_1.length, idx_2);
-
-      if (target_id.search(/^\d+$/) != -1) return target_id;
-
-      return null;
-    }
-
-    function get_profile_id() {
-      let tag_1_list = [
-        '"groupID":"',
-        '"pageID":"',
-        '"userID":"',
-        '"profile_owner":{"id":"',
-      ];
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-
-      for (tag of tag_1_list) {
-        let idx_1 = body.indexOf(tag);
-        let idx_2 = 0;
-
-        if (idx_1 == -1) {
-          continue;
-        } else {
-          idx_2 = body.indexOf(tag_2, idx_1 + tag.length);
-        }
-
-        let target_id = body.substring(idx_1 + tag.length, idx_2);
-
-        if (target_id.search(/^\d+$/) != -1) {
-          return target_id;
-        }
-      }
-
-      return null;
-    }
-
-    function craft_short_url(target_id) {
-      let result = `https://www.facebook.com/${target_id}`;
-
-      return result;
-    }
-
-    let target_id = "";
-
-    if (type === "post") {
-      target_id = get_post_id();
-    }
-
-    if (type === "profile") {
-      target_id = get_profile_id();
-    }
-
-    if (target_id) {
-      let result = craft_short_url(target_id);
-
-      navigator.clipboard.writeText(result);
-      window.prompt("URL:", result);
-    } else {
-      window.alert("Hãy reload trang!");
-    }
-  }
-
-  function get_long_fbid(type) {
-    function get_post_id() {
-      let tag_1 = '"subscription_target_id":"';
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-      let idx_1 = body.indexOf(tag_1);
-      let idx_2 = 0;
-
-      if (idx_1 != -1) {
-        idx_2 = body.indexOf(tag_2, idx_1 + tag_1.length);
-      } else {
-        return null;
-      }
-
-      let target_id = body.substring(idx_1 + tag_1.length, idx_2);
-
-      if (target_id.search(/^\d+$/) != -1) return target_id;
-
-      return null;
-    }
-
-    function get_profile_id() {
-      let tag_1_list = [
-        '"groupID":"',
-        '"pageID":"',
-        '"userID":"',
-        '"profile_owner":{"id":"',
-      ];
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-
-      for (tag of tag_1_list) {
-        let idx_1 = body.indexOf(tag);
-        let idx_2 = 0;
-
-        if (idx_1 == -1) {
-          continue;
-        } else {
-          idx_2 = body.indexOf(tag_2, idx_1 + tag.length);
-        }
-
-        let target_id = body.substring(idx_1 + tag.length, idx_2);
-
-        if (target_id.search(/^\d+$/) != -1) {
-          return target_id;
-        }
-      }
-
-      return null;
-    }
-
-    function craft_short_url(target_id) {
-      let result = `https://www.facebook.com/${target_id}`;
-
-      return result;
-    }
-
-    function craft_long_url(target_id) {
-      let separator_1 = "/posts/";
-      let separator_2 = "&id=";
-      let result = "";
-
-      if (document.URL.indexOf(separator_1) != -1) {
-        let base_url = document.URL.split(separator_1)[0];
-        result = base_url + separator_1 + target_id;
-      } else if (document.URL.indexOf(separator_2) != -1) {
-        let user_id = document.URL.split(separator_2)[1];
-        result = `https://www.facebook.com/${user_id}/posts/${target_id}`;
-      }
-
-      return result;
-    }
-
-    let target_id = "";
-
-    if (type === "post") {
-      target_id = get_post_id();
-    }
-
-    if (type === "profile") {
-      target_id = get_profile_id();
-    }
-
-    if (target_id) {
-      let result = "";
-
-      if (type === "post") {
-        result = craft_long_url(target_id);
-      }
-
-      if (type === "profile") {
-        result = craft_short_url(target_id);
-      }
-
-      navigator.clipboard.writeText(result);
-      window.prompt("URL:", result);
-    } else {
-      window.alert("Hãy reload trang!");
-    }
-  }
 });
 
 chrome.commands.onCommand.addListener(async (command, tab) => {
@@ -274,190 +88,190 @@ chrome.commands.onCommand.addListener(async (command, tab) => {
       });
     }
   }
-
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  function get_short_fbid(type) {
-    function get_post_id() {
-      let tag_1 = '"subscription_target_id":"';
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-      let idx_1 = body.indexOf(tag_1);
-      let idx_2 = 0;
-
-      if (idx_1 != -1) {
-        idx_2 = body.indexOf(tag_2, idx_1 + tag_1.length);
-      } else {
-        return null;
-      }
-
-      let target_id = body.substring(idx_1 + tag_1.length, idx_2);
-
-      if (target_id.search(/^\d+$/) != -1) return target_id;
-
-      return null;
-    }
-
-    function get_profile_id() {
-      let tag_1_list = [
-        '"groupID":"',
-        '"pageID":"',
-        '"userID":"',
-        '"profile_owner":{"id":"',
-      ];
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-
-      for (tag of tag_1_list) {
-        let idx_1 = body.indexOf(tag);
-        let idx_2 = 0;
-
-        if (idx_1 == -1) {
-          continue;
-        } else {
-          idx_2 = body.indexOf(tag_2, idx_1 + tag.length);
-        }
-
-        let target_id = body.substring(idx_1 + tag.length, idx_2);
-
-        if (target_id.search(/^\d+$/) != -1) {
-          return target_id;
-        }
-      }
-
-      return null;
-    }
-
-    function craft_short_url(target_id) {
-      let result = `https://www.facebook.com/${target_id}`;
-
-      return result;
-    }
-
-    let target_id = "";
-
-    if (type === "post") {
-      target_id = get_post_id();
-    }
-
-    if (type === "profile") {
-      target_id = get_profile_id();
-    }
-
-    if (target_id) {
-      let result = craft_short_url(target_id);
-
-      navigator.clipboard.writeText(result);
-      window.prompt("URL:", result);
-    } else {
-      window.alert("Hãy reload trang!");
-    }
-  }
-
-  function get_long_fbid(type) {
-    function get_post_id() {
-      let tag_1 = '"subscription_target_id":"';
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-      let idx_1 = body.indexOf(tag_1);
-      let idx_2 = 0;
-
-      if (idx_1 != -1) {
-        idx_2 = body.indexOf(tag_2, idx_1 + tag_1.length);
-      } else {
-        return null;
-      }
-
-      let target_id = body.substring(idx_1 + tag_1.length, idx_2);
-
-      if (target_id.search(/^\d+$/) != -1) return target_id;
-
-      return null;
-    }
-
-    function get_profile_id() {
-      let tag_1_list = [
-        '"groupID":"',
-        '"pageID":"',
-        '"userID":"',
-        '"profile_owner":{"id":"',
-      ];
-      let tag_2 = '"';
-
-      let body = document.body.innerHTML;
-
-      for (tag of tag_1_list) {
-        let idx_1 = body.indexOf(tag);
-        let idx_2 = 0;
-
-        if (idx_1 == -1) {
-          continue;
-        } else {
-          idx_2 = body.indexOf(tag_2, idx_1 + tag.length);
-        }
-
-        let target_id = body.substring(idx_1 + tag.length, idx_2);
-
-        if (target_id.search(/^\d+$/) != -1) {
-          return target_id;
-        }
-      }
-
-      return null;
-    }
-
-    function craft_short_url(target_id) {
-      let result = `https://www.facebook.com/${target_id}`;
-
-      return result;
-    }
-
-    function craft_long_url(target_id) {
-      let separator_1 = "/posts/";
-      let separator_2 = "&id=";
-      let result = "";
-
-      if (document.URL.indexOf(separator_1) != -1) {
-        let base_url = document.URL.split(separator_1)[0];
-        result = base_url + separator_1 + target_id;
-      } else if (document.URL.indexOf(separator_2) != -1) {
-        let user_id = document.URL.split(separator_2)[1];
-        result = `https://www.facebook.com/${user_id}/posts/${target_id}`;
-      }
-
-      return result;
-    }
-
-    let target_id = "";
-
-    if (type === "post") {
-      target_id = get_post_id();
-    }
-
-    if (type === "profile") {
-      target_id = get_profile_id();
-    }
-
-    if (target_id) {
-      let result = "";
-
-      if (type === "post") {
-        result = craft_long_url(target_id);
-      }
-
-      if (type === "profile") {
-        result = craft_short_url(target_id);
-      }
-
-      navigator.clipboard.writeText(result);
-      window.prompt("URL:", result);
-    } else {
-      window.alert("Hãy reload trang!");
-    }
-  }
 });
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function get_short_fbid(type) {
+  function get_post_id() {
+    let tag_1 = '"subscription_target_id":"';
+    let tag_2 = '"';
+
+    let body = document.body.innerHTML;
+    let idx_1 = body.indexOf(tag_1);
+    let idx_2 = 0;
+
+    if (idx_1 != -1) {
+      idx_2 = body.indexOf(tag_2, idx_1 + tag_1.length);
+    } else {
+      return null;
+    }
+
+    let target_id = body.substring(idx_1 + tag_1.length, idx_2);
+
+    if (target_id.search(/^\d+$/) != -1) return target_id;
+
+    return null;
+  }
+
+  function get_profile_id() {
+    let tag_1_list = [
+      '"groupID":"',
+      '"pageID":"',
+      '"userID":"',
+      '"profile_owner":{"id":"',
+    ];
+    let tag_2 = '"';
+
+    let body = document.body.innerHTML;
+
+    for (tag of tag_1_list) {
+      let idx_1 = body.indexOf(tag);
+      let idx_2 = 0;
+
+      if (idx_1 == -1) {
+        continue;
+      } else {
+        idx_2 = body.indexOf(tag_2, idx_1 + tag.length);
+      }
+
+      let target_id = body.substring(idx_1 + tag.length, idx_2);
+
+      if (target_id.search(/^\d+$/) != -1) {
+        return target_id;
+      }
+    }
+
+    return null;
+  }
+
+  function craft_short_url(target_id) {
+    let result = `https://www.facebook.com/${target_id}`;
+
+    return result;
+  }
+
+  let target_id = "";
+
+  if (type === "post") {
+    target_id = get_post_id();
+  }
+
+  if (type === "profile") {
+    target_id = get_profile_id();
+  }
+
+  if (target_id) {
+    let result = craft_short_url(target_id);
+
+    navigator.clipboard.writeText(result);
+    window.prompt("URL:", result);
+  } else {
+    window.alert("Hãy reload trang!");
+  }
+}
+
+function get_long_fbid(type) {
+  function get_post_id() {
+    let tag_1 = '"subscription_target_id":"';
+    let tag_2 = '"';
+
+    let body = document.body.innerHTML;
+    let idx_1 = body.indexOf(tag_1);
+    let idx_2 = 0;
+
+    if (idx_1 != -1) {
+      idx_2 = body.indexOf(tag_2, idx_1 + tag_1.length);
+    } else {
+      return null;
+    }
+
+    let target_id = body.substring(idx_1 + tag_1.length, idx_2);
+
+    if (target_id.search(/^\d+$/) != -1) return target_id;
+
+    return null;
+  }
+
+  function get_profile_id() {
+    let tag_1_list = [
+      '"groupID":"',
+      '"pageID":"',
+      '"userID":"',
+      '"profile_owner":{"id":"',
+    ];
+    let tag_2 = '"';
+
+    let body = document.body.innerHTML;
+
+    for (tag of tag_1_list) {
+      let idx_1 = body.indexOf(tag);
+      let idx_2 = 0;
+
+      if (idx_1 == -1) {
+        continue;
+      } else {
+        idx_2 = body.indexOf(tag_2, idx_1 + tag.length);
+      }
+
+      let target_id = body.substring(idx_1 + tag.length, idx_2);
+
+      if (target_id.search(/^\d+$/) != -1) {
+        return target_id;
+      }
+    }
+
+    return null;
+  }
+
+  function craft_short_url(target_id) {
+    let result = `https://www.facebook.com/${target_id}`;
+
+    return result;
+  }
+
+  function craft_long_url(target_id) {
+    let separator_1 = "/posts/";
+    let separator_2 = "&id=";
+    let result = "";
+
+    if (document.URL.indexOf(separator_1) != -1) {
+      let base_url = document.URL.split(separator_1)[0];
+      result = base_url + separator_1 + target_id;
+    } else if (document.URL.indexOf(separator_2) != -1) {
+      let user_id = document.URL.split(separator_2)[1];
+      result = `https://www.facebook.com/${user_id}/posts/${target_id}`;
+    }
+
+    return result;
+  }
+
+  let target_id = "";
+
+  if (type === "post") {
+    target_id = get_post_id();
+  }
+
+  if (type === "profile") {
+    target_id = get_profile_id();
+  }
+
+  if (target_id) {
+    let result = "";
+
+    if (type === "post") {
+      result = craft_long_url(target_id);
+    }
+
+    if (type === "profile") {
+      result = craft_short_url(target_id);
+    }
+
+    navigator.clipboard.writeText(result);
+    window.prompt("URL:", result);
+  } else {
+    window.alert("Hãy reload trang!");
+  }
+}
